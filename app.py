@@ -15,6 +15,8 @@ from flask import Response
 
 app = Flask(__name__, static_folder='static') # 
 
+
+
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -575,4 +577,4 @@ def admin_logout():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)

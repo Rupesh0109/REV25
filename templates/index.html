@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVOTRONICS</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/logo 2.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+    <style>
+        .flash-messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 80%;
+    max-width: 500px;
+}
+
+.alert {
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.alert-error {
+    background-color: #f44336;
+    color: white;
+}
+
+.alert-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.alert-warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="alert-container" style="margin-top: 100px;">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+  <!-- Hero Section -->
+  <section class="hero">
+    
+    <video autoplay muted loop class="hero-video">
+        <source src="{{ url_for('static', filename='images/revv.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div id="animation-container"></div>
+    <div class="hero-content">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='images/Revotronics_Title.png') }}" alt="Symposium Logo" class="main-logo">
+        </div>
+        <div class="typewriter"><i>GET. SET. REV!</i></div> <br>
+        <div class="subtitle">A National Level Technical Symposium</div>
+        <div class="info-container">
+            <a href="https://g.co/kgs/rcYpkaM">
+            <div class="location-container">
+                <i class="fas fa-map-marker-alt"></i>
+                Rajalakshmi Engineering College, Thandalam
+            </div></a>
+            <a href="#events" class="cta-button">
+                <span>Explore Events</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section bg-image">
+    <div class="section-title">
+        <h2>About Us</h2>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>About REC</h3>
+        <div class="about-content reverse">
+            <div class="about-text">
+                <p>Rajalakshmi Engineering College (REC) is a well-known private college in Chennai, India. Started in 1997, it is linked to Anna University and offers engineering courses. The college focuses on good teaching, research, and hands-on learning. It has modern labs, experienced teachers, and great facilities. Students can join clubs, take part in events, and do internships. Many graduates get jobs in top companies.</p>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/rec.jpg') }}" alt="ECE Department">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>About ECE</h3>
+        <div class="about-content reverse">
+            <div class="about-text">
+                <p>The ECE department at Rajalakshmi Engineering College (REC) offers B.E. and M.E. programs. It teaches students about communication systems, digital signals, microelectronics, and embedded systems. The department has well-equipped labs, experienced teachers, and hands-on learning. Students work on projects, attend workshops, and do internships. Many graduates get jobs in top electronics and communication companies.</p>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">95</span>
+                        <span class="stat-label">Placement Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25</span>
+                        <span class="stat-label">Years of Excellence</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Research Papers</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/ece.jpg') }}" alt="ECE Department">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="events-section">
+    <div class="section-title">
+        <h2>Events</h2>
+        <div class="title-underline"></div>
+    </div>
+
+    <div class="slots-container">
+        <div class="slot">
+            <div class="events-grid">
+                <div class="event-card technical">
+                    <h4>Paper Presentation</h4>
+                    <p>Present your innovative ideas and research</p>
+                    <a href="{{ url_for('paperpres_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card technical">
+                    <h4>Squidtronics</h4>
+                    <p>Electronics challenge event</p>
+                    <a href="{{ url_for('squidtronics_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card technical">
+                    <h4>Technowaves</h4>
+                    <p>Technical showcase competition</p>
+                    <a href="{{ url_for('technowaves_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="event-card non-technical">
+                    <h4>Screen Bug</h4>
+                    <p>Entertainment quiz challenge</p>
+                    <a href="{{ url_for('screenbug_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card non-technical">
+                    <h4>IPL Auction</h4>
+                    <p>Virtual cricket team building</p>
+                    <a href="{{ url_for('ipl_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card non-technical">
+                    <h4>Channel Rush</h4>
+                    <p>Fun-filled entertainment event</p>
+                    <a href="{{ url_for('channel_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slot">
+            <div class="events-grid">
+                <div class="event-card technical">
+                    <h4>Electromania</h4>
+                    <p>Electronics design competition</p>
+                    <a href="{{ url_for('electromania_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card technical">
+                    <h4>ElectroSpark</h4>
+                    <p>Technical hackathon</p>
+                    <a href="{{ url_for('electrospark_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card technical">
+                    <h4>Drone Workshop</h4>
+                    <p>Drone Workshop</p>
+                    <a href="{{ url_for('drone_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card technical">
+                    <h4>Revothon</h4>
+                    <p>Technical treasure hunt</p>
+                    <a href="{{ url_for('revotron_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="event-card non-technical">
+                    <h4>Stage Unplugged</h4>
+                    <p>Open mic performance</p>
+                    <a href="{{ url_for('stage_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card non-technical">
+                    <h4>Treasure Hunt</h4>
+                    <p>Adventure hunting game</p>
+                    <a href="{{ url_for('treasure_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="event-card non-technical">
+                    <h4>Defend & Dominate</h4>
+                    <p>Strategy gaming event</p>
+                    <a href="{{ url_for('defend_event') }}" class="event-cta">  Explore More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Rules Section -->
+  <section id="rules" class="rules-section">
+    <div class="section-title">
+        <h2>Rules & Guidelines</h2>
+        <div class="title-underline"></div>
+    </div>
+    
+    <div class="rules-container">
+        <div class="rule-card">
+            <div class="rule-icon">
+                <i class="fas fa-user-clock"></i>
+            </div>
+            <p>On spot registration is not entertained.</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <p>No refund on the registration fee will be entertained.</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-icon">
+                <i class="fas fa-comment-slash"></i>
+            </div>
+            <p>Participants are strictly advised to refrain themselves from using abusive language, hate speech and politics inside the campus.</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-icon">
+                <i class="fas fa-ban"></i>
+            </div>
+            <p>We have zero tolerance policy on consumption of tobacco, liquor and drugs inside the campus once found guilty harsh steps will be taken on the participants.</p>
+        </div>
+
+        <div class="rule-card">
+            <div class="rule-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <p>Rules are subjected to change at the discretion of Management and Event organisers before and during the commencement of an event.</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section id="faqs" class="faqs-section">
+    <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <div class="title-underline"></div>
+    </div>
+    
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How do I register for the events?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Registration can be done through our online portal. Click on the 'Login' button at the top of the page, create an account, and follow the registration process for your desired events.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Can I participate in multiple events?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, you can participate in multiple events as long as there are no schedule conflicts. Make sure to check the event timings before registering.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What should I bring on the event day?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Please bring your college ID, registration confirmation, and any specific materials required for your registered events. Details will be provided in the registration confirmation email.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Is accommodation provided?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, accommodation can be arranged upon request. Please mention your requirement during registration. Additional charges may apply.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Are there any team events?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, several events allow team participation. Team size and composition requirements vary by event. Check individual event details for specific information.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Will certificates be provided?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, participation certificates will be provided to all participants. Winners will receive additional certificates and prizes.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <div class="title-underline"></div>
+    </div>
+    <div class="contact-container">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="aaaa1511-ba12-4482-8802-9f2b15cf4ab0">
+            
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+            <div class="form-group">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="rollNumber" name="roll_number" required>
+                <label for="rollNumber">Roll Number</label>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="department" name="department" required>
+                <label for="department">Department</label>
+            </div>
+
+            <div class="form-group">
+                <input type="tel" id="contact" name="contact_number" required>
+                <label for="contact">Contact Number</label>
+            </div>
+
+            <div class="form-group">
+                <textarea id="message" name="message" required></textarea>
+                <label for="message">Message</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="{{ url_for('static', filename='images/Revotronics_Title.png') }}" alt="Revotronics">
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/revotronics_/" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/krishnaprasath-venkadesan/" target = "_blank" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.whatsapp.com/channel/0029Va6tkOOIiRp13l5YE70j" target = "_blank" class="social-link">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© All Rights Reserved REVOTRONICS 2025</p>
+    </div>
+</footer>
+
+       
+</body>
+</html>

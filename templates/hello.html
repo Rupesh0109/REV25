@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        /* Root variables and reset */
+        :root {
+            --primary: #6a1b9a;
+            --secondary: #9c27b0;
+            --accent: #00e5ff;
+            --accent-rgb: 0, 229, 255;
+            --dark: #4a148c;
+            --light: #f3e5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .contact-wrapper {
+            max-width: 600px;
+            width: 100%;
+            padding: 2rem;
+            background-color: var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .heading-underline {
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .contact-form-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.5);
+        }
+
+        .form-submit-btn {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-submit-btn:hover {
+            background-color: var(--secondary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .form-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .contact-heading h2 {
+                font-size: 2rem;
+            }
+
+            .contact-wrapper {
+                padding: 1.5rem;
+            }
+
+            .input-group input,
+            .input-group select {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .form-submit-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-heading h2 {
+                font-size: 1.75rem;
+            }
+
+            .contact-wrapper {
+                padding: 1rem;
+            }
+
+            .input-group label {
+                font-size: 0.9rem;
+            }
+
+            .input-group input,
+            .input-group select {
+                font-size: 0.85rem;
+            }
+
+            .form-submit-btn {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-wrapper">
+        <div class="contact-heading">
+            <h2>Registration Form</h2>
+            <div class="heading-underline"></div>
+        </div>
+        <form class="contact-form-wrapper">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="contact">Contact Number (WhatsApp)</label>
+                <input type="tel" id="contact" name="contact" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="college">College</label>
+                <input type="text" id="college" name="college" required>
+            </div>
+            <div class="input-group">
+                <label for="year">Year of Study</label>
+                <select id="year" name="year" required>
+                    <option value="">Select Year</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                    <option value="5">5th Year</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <button type="submit" class="form-submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

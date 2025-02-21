@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        .navbar { width: 200px; }
+        .container { display: flex; }
+        .nav-panel { width: 200px; background-color: #f4f4f4; padding: 10px; }
+        .content { margin-left: 220px; padding: 20px; }
+        .event-list { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-panel">
+            <h3>Admin Panel</h3>
+            <h3>Total Paid Users: {{ paid_users_count }}</h3>
+            <h2>Download Paid Users:</h2>
+        <a href="{{ url_for('download_paid_users') }}">Download CSV for All Paid Users</a>
+            <ul>
+                <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h2>Event Registrations</h2>
+            <div class="event-list">
+                {% for event in event_data %}
+                    <div>
+                        <h3>{{ event.event_name }}</h3>
+                        <p>{{ event.description }}</p>
+                        <p>Registered Persons: {{ event.team_count }}</p>
+                        <a href="{{ url_for('download_event_data', event_name=event.event_name) }}">Download Data as CSV</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for {{ event_name }}</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set up base styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+
+        /* Header section */
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #5D3F6E;
+        }
+
+        /* Flash messages */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .danger {
+            color: red;
+        }
+
+        /* Form styling */
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            height: 40px;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        button {
+            background-color: #5D3F6E;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #7a4e8f;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            form {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+<div style="margin-top: 20vh;">
+    <h1>Register for {{ event_name }}</h1>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('register_event', event_name=event_name) }}">
+        <!-- Team Name Field -->
+        <label for="team_name" style="color: black;">Team Name:</label>
+        <input type="text" name="team_name" id="team_name" placeholder="Team name" required><br><br>
+
+        <!-- Participants Field (Email IDs) -->
+        <label for="participants" style="color: black;">Participants (Email IDs):</label>
+        <input type="text" name="participants" id="participants" placeholder="Enter emails separated by commas" required><br><br>
+
+        {% if 'paper_theme' in event_config.extra_fields %}
+        <!-- Paper Theme and Paper ID Dropdown Fields -->
+        <label for="paper_theme">Paper Theme:</label>
+        <select name="paper_theme" id="paper_theme" required>
+            <option value="Portable EEG Monitoring System for Early Neurological Disorder Detection">Portable EEG Monitoring System for Early Neurological Disorder Detection</option>
+<option value="Smart Infant Monitoring System for SIDS Prevention">Smart Infant Monitoring System for SIDS Prevention</option>
+<option value="IoT-Enabled Healthcare Pods for Remote Diagnostics">IoT-Enabled Healthcare Pods for Remote Diagnostics</option>
+<option value="Temperature-Sensitive Chemical Strip for Medicine and Vaccine Transport">Temperature-Sensitive Chemical Strip for Medicine and Vaccine Transport</option>
+<option value="Adaptive Sleep Therapy Device with EEG and Motion Tracking">Adaptive Sleep Therapy Device with EEG and Motion Tracking</option>
+
+<!-- Smart Education Themes -->
+<option value="Smart Institute Information Display System">Smart Institute Information Display System</option>
+<option value="Alumni Association Platform for Universities/Institutes">Alumni Association Platform for Universities/Institutes</option>
+<option value="AI-Powered Learning App for Deaf and Mute Individuals">AI-Powered Learning App for Deaf and Mute Individuals</option>
+<option value="Personalized Learning Path Dashboard for Skill Development">Personalized Learning Path Dashboard for Skill Development</option>
+<option value="Freelancing Marketplace for India">Freelancing Marketplace for India</option>
+<option value="Mentor Connect – Career Guidance Platform">Mentor Connect – Career Guidance Platform</option>
+<option value="AI-Driven Career Counseling for Schools">AI-Driven Career Counseling for Schools</option>
+<option value="Virtual-Based Learning Platform">Virtual-Based Learning Platform</option>
+<option value="Assistive Writing Pen and Pad for Children with Learning Disabilities">Assistive Writing Pen and Pad for Children with Learning Disabilities</option>
+<option value="Immersive AR/VR Training System for Vocational Skills">Immersive AR/VR Training System for Vocational Skills</option>
+
+<!-- Blockchain and Cybersecurity Themes -->
+<option value="PII Detection and Redaction Software">PII Detection and Redaction Software</option>
+<option value="IoT-Enabled Biometric Lock with Tamper Detection">IoT-Enabled Biometric Lock with Tamper Detection</option>
+<option value="Platform for Identifying Drug Trafficking on Social Media">Platform for Identifying Drug Trafficking on Social Media</option>
+<option value="Portable USB Scanner for Malware Detection">Portable USB Scanner for Malware Detection</option>
+<option value="Blockchain-Based Document Verification System">Blockchain-Based Document Verification System</option>
+<option value="Fake Profile Detection and Reporting System">Fake Profile Detection and Reporting System</option>
+<option value="Real-Time Vulnerability Detection and Reporting Tool">Real-Time Vulnerability Detection and Reporting Tool</option>
+<option value="Enhanced Usability and Integration of Hardware Security Keys for MFA">Enhanced Usability and Integration of Hardware Security Keys for MFA</option>
+<option value="Blockchain-Powered Security Framework for IoT Devices">Blockchain-Powered Security Framework for IoT Devices</option>
+<option value="Blockchain-Based Incident Response and Forensic Framework">Blockchain-Based Incident Response and Forensic Framework</option>
+
+<!-- Renewable Energy Themes -->
+<option value="Smart City-Wide Carbon Neutrality System">Smart City-Wide Carbon Neutrality System</option>
+<option value="Wearable Safety Device for Sewer Cleaners">Wearable Safety Device for Sewer Cleaners</option>
+<option value="AI-Powered Early Warning System for Forest Fires">AI-Powered Early Warning System for Forest Fires</option>
+<option value="Automated Solar Panel Cleaning System with Real-Time Dirt Detection">Automated Solar Panel Cleaning System with Real-Time Dirt Detection</option>
+<option value="AI-Driven E-Waste Monitoring and Recycling System">AI-Driven E-Waste Monitoring and Recycling System</option>
+<option value="IoT-Enabled Biogas Production System for Rural Energy Access">IoT-Enabled Biogas Production System for Rural Energy Access</option>
+<option value="Hybrid Renewable Energy and Desalination System for Water-Scarce Regions">Hybrid Renewable Energy and Desalination System for Water-Scarce Regions</option>
+<option value="Urban Waste-to-Energy System Using Pyrolysis Technology">Urban Waste-to-Energy System Using Pyrolysis Technology</option>
+<option value="Real-Time Electrical Conductivity Monitoring for Groundwater Salinity">Real-Time Electrical Conductivity Monitoring for Groundwater Salinity</option>
+<option value="Student Innovation">Student Innovation</option>
+
+<!-- Smart Railway and Transportation Themes -->
+<option value="Smart Railway Station Navigation System">Smart Railway Station Navigation System</option>
+<option value="Community-Based Waste Management with Net-Zero Waste Goal">Community-Based Waste Management with Net-Zero Waste Goal</option>
+<option value="Drone-Based Real-Time Air Quality Monitoring">Drone-Based Real-Time Air Quality Monitoring</option>
+<option value="Machine Learning-Based Road Construction Progress Monitoring">Machine Learning-Based Road Construction Progress Monitoring</option>
+<option value="Effective Grey Water Management for Sustainable Water Use">Effective Grey Water Management for Sustainable Water Use</option>
+
+<!-- Women and Child Health Themes -->
+<option value="Telemedicine Platform for Maternal and Child Health in Remote Areas">Telemedicine Platform for Maternal and Child Health in Remote Areas</option>
+<option value="Wearable Smart Safety Devices for Emergency Response">Wearable Smart Safety Devices for Emergency Response</option>
+<option value="AI-Driven Safety Analytics for Women">AI-Driven Safety Analytics for Women</option>
+<option value="Digital Legal Aid Platform for Women’s Rights and Assistance">Digital Legal Aid Platform for Women’s Rights and Assistance</option>
+<option value="Wearable AI Devices for Early Health Issue Detection">Wearable AI Devices for Early Health Issue Detection</option>
+
+    
+        </select><br><br>
+    
+        <label for="paper_id">Paper ID:</label>
+        <select name="paper_id" id="paper_id" required>
+            <option value="">Select Paper ID</option>
+    
+            <!-- Healthcare Paper IDs -->
+            <option value="PSH-HC01">PSH-HC01</option>
+            <option value="PSH-HC02">PSH-HC02</option>
+            <option value="PSH-HC03">PSH-HC03</option>
+            <option value="PSH-HC04">PSH-HC04</option>
+            <option value="PSH-HC05">PSH-HC05</option>
+    
+            <!-- Smart Education Paper IDs -->
+            <option value="PSS-SE01">PSS-SE01</option>
+            <option value="PSS-SE02">PSS-SE02</option>
+            <option value="PSS-SE03">PSS-SE03</option>
+            <option value="PSS-SE04">PSS-SE04</option>
+            <option value="PSS-SE05">PSS-SE05</option>
+            <option value="PSS-SE06">PSS-SE06</option>
+            <option value="PSS-SE07">PSS-SE07</option>
+            <option value="PSS-SE08">PSS-SE08</option>
+            <option value="PSH-SE09">PSH-SE09</option>
+            <option value="PSH-SE10">PSH-SE10</option>
+    
+            <!-- Blockchain and Cybersecurity Paper IDs -->
+            <option value="PSS-BC-01">PSS-BC-01</option>
+            <option value="PSH-BC-02">PSH-BC-02</option>
+            <option value="PSS-BC-03">PSS-BC-03</option>
+            <option value="PSS-BC-04">PSS-BC-04</option>
+            <option value="PSS-BC-05">PSS-BC-05</option>
+            <option value="PSS-BC-06">PSS-BC-06</option>
+            <option value="PSS-BC-07">PSS-BC-07</option>
+            <option value="PSH-BC-08">PSH-BC-08</option>
+            <option value="PSS-BC-09">PSS-BC-09</option>
+            <option value="PSS-BC-10">PSS-BC-10</option>
+    
+            <!-- Renewable Energy Paper IDs -->
+            <option value="PSS-RE-01">PSS-RE-01</option>
+            <option value="PSH-RE-02">PSH-RE-02</option>
+            <option value="PSH-RE-03">PSH-RE-03</option>
+            <option value="PSH-RE-04">PSH-RE-04</option>
+            <option value="PSS-RE-05">PSS-RE-05</option>
+            <option value="PSS-RE-06">PSS-RE-06</option>
+            <option value="PSH-RE-07">PSH-RE-07</option>
+            <option value="PSH-RE-08">PSH-RE-08</option>
+            <option value="PSH-RE-09">PSH-RE-09</option>
+            <option value="PSS-RE-10">PSS-RE-10</option>
+    
+            <!-- Smart Railway and Transportation Paper IDs -->
+            <option value="PSS-SR-01">PSS-SR-01</option>
+            <option value="PSH-SR-02">PSH-SR-02</option>
+            <option value="PSH-SR-03">PSH-SR-03</option>
+            <option value="PSS-SR-04">PSS-SR-04</option>
+            <option value="PSH-SR-05">PSH-SR-05</option>
+    
+            <!-- Women and Child Health Paper IDs -->
+            <option value="PSS-CW-01">PSS-CW-01</option>
+            <option value="PSH-CW-02">PSH-CW-02</option>
+            <option value="PSS-CW-03">PSS-CW-03</option>
+            <option value="PSS-CW-04">PSS-CW-04</option>
+            <option value="PSH-CW-05">PSH-CW-05</option>
+    
+        </select><br><br>
+    {% endif %}
+    
+
+        {% if 'performance_type' in event_config.extra_fields %}
+            <!-- Performance Type Field -->
+            <label for="performance_type">Performance Type (Singing, Dancing, Acting, Performance):</label>
+            <select name="performance_type" id="performance_type" required>
+                <option value="singing">Singing</option>
+                <option value="dancing">Dancing</option>
+                <option value="acting">Acting</option>
+                <option value="performance">Performance</option>
+            </select><br><br>
+        {% endif %}
+
+        <!-- Submit Button -->
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+
+</html>

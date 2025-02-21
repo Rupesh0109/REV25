@@ -1,0 +1,29 @@
+<head>  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo 2.png') }}">  </head>
+
+<nav class="navbar">
+    <div class="nav-logo">
+        <img src="{{ url_for('static', filename='images/logo 2.png') }}" alt="Revotronics Logo">
+    </div>
+    <div class="nav-links">
+        <a href="/#about" class="nav-item">About</a>
+        <a href="/#events" class="nav-item">Events</a>
+        <a href="/#rules" class="nav-item">Rules</a>
+        <a href="/#faqs" class="nav-item">FAQs</a>
+        <a href="/#contact" class="nav-item">Contact</a>
+        {% if g.user_name %}
+            <a href="{{ url_for('home') }}" class="nav-item profile-btn">{{ g.user_name }}</a>
+            {% if g.payment == "NO" %}
+                <a href="{{ url_for('payment') }}" class="nav-item payment-btn">Pay</a>
+            {% endif %}
+            {% if g.payment == "YES" %}
+                <span class="nav-item paid-text">Paid</span>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="nav-item login-btn">Login/Signup</a>
+        {% endif %}
+    </div>
+    
+</nav>

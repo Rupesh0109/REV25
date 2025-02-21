@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Presentation - Revotronics</title>
+    <!-- Add Poppins font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.css">
+    <style>
+        :root {
+            --primary: #6a1b9a;
+            --secondary: #9c27b0;
+            --accent: #00e5ff;
+            --dark: #4a148c;
+            --light: #f3e5f5;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-image: url("{{ url_for('static', filename='images/jgj4.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            overflow-y: auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .event-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 1000px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease;
+        }
+
+        .event-header {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .event-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .event-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .event-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .event-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .event-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*background: linear-gradient(45deg, rgba(106, 27, 154, 0.4), rgba(0, 229, 255, 0.4));*/
+            pointer-events: none;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .event-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .event-about h2 {
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .event-about h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .event-about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            text-align: justify; /* Add text justification */
+        }
+
+        .event-details-rules {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .event-details h2,
+        .event-rules h2 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .event-details ul,
+        .event-rules ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .event-details ul li,
+        .event-rules ul li {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            transition: transform 0.3s ease;
+        }
+
+        .event-details ul li:hover,
+        .event-rules ul li:hover {
+            transform: translateX(10px);
+        }
+
+        .event-details ul li i,
+        .event-rules ul li i {
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(106, 27, 154, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .event-content,
+            .event-details-rules {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .event-box {
+                padding: 1.5rem;
+            }
+
+            .event-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .event-details-rules {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-box {
+                padding: 1rem;
+            }
+
+            .event-header h1 {
+                font-size: 2rem;
+            }
+
+            .event-header p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-header">
+                <h1>Paper Presentation</h1>
+            </div>
+            <div class="event-content">
+                <div class="event-image">
+                    <img src="{{ url_for('static', filename='images/paperpres.png') }}" alt="Hackathon Event">
+                </div>
+                <div class="event-about">
+                    <h2>About the Event</h2>
+                    <p>
+                        Participants will present their research findings, explaining the problem statement, methodology, results, and conclusions. A panel of judges will assess clarity, research depth, and responses to audience queries, and the top presentations will receive awards.
+                    </p>
+                </div>
+            </div>
+            <div class="event-details-rules">
+                <div class="event-details">
+                    <h2>Event Details</h2>
+                    <ul>
+                        <li><i class="fa-solid fa-book-open"></i>Registration & Abstract Submission: Participants register online and submit their research abstract via Google Forms.</li>
+                        <li><i class="fas fa-clock"></i>Shortlisting: A panel of judges reviews abstracts and shortlists participants based on quality and relevance.</li>
+                        <li><i class="fa-solid fa-money-bill"></i>Paper Submission & Payment: Shortlisted teams submit full research papers and pay the event registration fee.</li>
+                        <li><i class="fa-solid fa-chalkboard-user"></i>Paper Presentation: Participants present their research to a jury and audience, followed by a Q&A session.</li>
+                        <li><i class="fa-solid fa-chalkboard-user"></i>Winner Selection & Awards: Judges evaluate presentations, select winners, and distribute awards.</li>
+                    </ul>
+                </div>
+                <div class="event-rules">
+                    <h2>Rules</h2>
+                    <ul>
+                        <li><i class="fas fa-users"></i>Team Size: Maximum of three members per team; solo participation is allowed.</li>
+                        <li><i class="fa-solid fa-money-bill"></i>Registration & Fee: Participants must register online and pay the fee upon submission of the abstract.</li>
+                        <li><i class="fas fa-wifi"></i>Abstract & Paper Submission: Abstracts must be submitted via Google Forms; shortlisted participants submit full papers.</li>
+                        <li><i class="fa-solid fa-clock"></i>Presentation Time: Each team gets 4–5 minutes to present, followed by a Q&A session.</li>
+                        <li><i class="fa-solid fa-medal"></i>Judging Criteria: Research quality, clarity, and ability to answer questions will determine winners.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="{{ url_for('register_event', event_name='paperpres') }}" class="cta-button">Register Now</a>
+        </div>
+    </div>
+</body>
+</html>

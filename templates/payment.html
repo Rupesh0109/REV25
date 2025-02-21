@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .payment-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+        .btn-primary {
+            background-color: #ffcc00;
+            border: none;
+            color: black;
+        }
+        .btn-primary:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="payment-container text-center">
+        <h2 class="mb-3">Payment Details</h2>
+        <h5>{{name}}</h5>
+        <h5>{{email}}</h5>
+        <h5>{{phone}}</h5>
+        <hr>
+        <form action="payment" method="POST">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="hidden" name="phone" value="{{ phone }}">
+            <label class="form-label">Amount (INR):</label>
+            <h4 class="text-warning">₹150</h4>
+            <button type="submit" class="btn btn-primary w-100 mt-3">Proceed to Pay</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

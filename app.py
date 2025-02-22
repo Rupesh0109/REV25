@@ -289,6 +289,7 @@ def payment_success():
                 user.payment = "YES"
                 user.pay_ID=payment_id
                 db.session.commit()
+                session['payment']="YES"
                 flash("Payment Successful!", "success")
             return redirect(url_for('home'))
 

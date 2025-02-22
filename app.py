@@ -480,7 +480,7 @@ def admin_login():
         password = request.form.get('password')
 
         # Validate admin credentials (this is a simple check, you can use a database for real use cases)
-        if username == 'admin' and check_password_hash(generate_password_hash('adminpassword'), password):
+        if username == 'Revotronics25' and check_password_hash(generate_password_hash('Teamrevot25'), password):
             session['admin'] = username
             return redirect(url_for('admin_dashboard'))
         else:
